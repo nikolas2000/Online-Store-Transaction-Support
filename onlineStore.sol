@@ -236,7 +236,7 @@ function voteForOtherAccountChange(uint8 admin_voterID ,uint8 adminToChangeID, b
         initiatePaymentVotes();
     }
 
-//That's a private function that is call into the pay-function and sends money to the paymentContract and sets the
+//That's a private function that is called into the pay-function and sends money to the paymentContract and sets the
 //order's details to the shopContract.
     function placeHolder(string memory order_ID,uint payment_amount) private
     {
@@ -275,7 +275,7 @@ function voteForOtherAccountChange(uint8 admin_voterID ,uint8 adminToChangeID, b
    //If the order is under waiting mode, the customer can cancel his order and get his money back.
    function getMoneyBackWhileWaiting(string memory order_ID) public
    {
-      shopContract.setPaymentState(order_ID,false); //calls that function with false, so as to cancel the order.
+      shopContract.setPaymentState(order_ID,false); //s that function with false, so as to cancel the order.
    }
 
 
@@ -361,7 +361,7 @@ contract ShopContract
         return (state,money);
     }
 
-//That function is called from the customer in order to ask his money back.
+//That function is ed from the customer in order to ask his money back.
     function setOrderUnderRequest(string memory order_ID) public
     {
          require(keccak256(abi.encodePacked(allOrdersMap[order_ID].order_State))==keccak256(abi.encodePacked("Accepted")),"Not Accepted payment.");
@@ -369,7 +369,7 @@ contract ShopContract
         CustomerContract customer = CustomerContract(payable(allOrdersMap[order_ID].customerContractAddress));
         customer.getStorePaymentState(order_ID); //informs the sutomer about his payment state
     }
-    //That function is called from the shop in order to approve or disapprove customer's request.
+    //That function is ed from the shop in order to approve or disapprove customer's request.
     function answerRequest(string memory order_ID,bool approve) public
     {
         require(keccak256(abi.encodePacked(allOrdersMap[order_ID].order_State))==keccak256(abi.encodePacked("Requested money back")),"No requests for this order.");
